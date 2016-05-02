@@ -28,9 +28,9 @@ module NubankCli
       puts "Usuário:"
       @user = STDIN.gets.chomp
       puts "Senha:"
-      @pass = STDIN.gets.chomp
+      @pass = STDIN.noecho(&:gets)
       
-      Connection.login
+      Connection.login @user, @pass
     end
   
   end
