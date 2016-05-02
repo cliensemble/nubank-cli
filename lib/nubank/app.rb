@@ -1,4 +1,4 @@
-require 'curb'
+load 'helpers/connections.rb'
 require 'thor'
 
 module NubankCli
@@ -23,14 +23,14 @@ module NubankCli
       puts 'teste'
     end
     
-    private
+    # private
     def login
       puts "Usuário:"
       @user = STDIN.gets.chomp
       puts "Senha:"
       @pass = STDIN.gets.chomp
       
-      
+      Connection.login
     end
   
   end
