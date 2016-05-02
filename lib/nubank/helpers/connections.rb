@@ -14,7 +14,7 @@ module NubankCli
           curl.headers["Content-Type"] = "application/json"
         end
         
-        Parse.parse_json c.body_str
+        Parse.parse_json(c.body_str)
       end
         
     end
