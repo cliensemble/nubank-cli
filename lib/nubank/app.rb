@@ -1,10 +1,11 @@
-load 'helpers/connections.rb'
+require_relative 'helpers/connections.rb'
+require 'json'
 require 'thor'
 
 module NubankCli
   class App < Thor
   
-    package_name 'tpl'
+    package_name 'nbnk'
     
     desc "setup", "Create config and edit with $EDITOR"
     def setup
@@ -18,19 +19,28 @@ module NubankCli
       end
     end
     
-    desc 'teste', 'teste'
-    def teste
-      puts 'teste'
+    desc 'fatura', 'Baixa a fatura do mês atual'
+    def fatura
+      token = Connection.get_token(authenticate)
+      customer = Connection.get_customer_id(token)
+      account = Connection.get_account_id(customer['customer']['id'], token)
+      
+      if account['accounts'].length == 1
+        content = Connection.get(account['accounts'][0]['_links']['bills_summary']['href'], token)
+        File.write('~/fatura.json', content)
+      else
+        puts 'Escolha uma conta (LOCKED BADGE)'
+      end
     end
-    
-    # private
-    def login
+      
+    private
+    def authenticate
       puts "Usuário:"
       @user = STDIN.gets.chomp
       puts "Senha:"
       @pass = STDIN.noecho(&:gets).delete("\n")
       
-      Connection.login @user, @pass
+      {'user' => @user, 'pass' => @pass}
     end
   
   end
