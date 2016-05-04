@@ -2,4 +2,5 @@
 
 require 'nubank'
 
+# Inicia a aplicação
 NubankCli::App.start
