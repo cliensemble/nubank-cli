@@ -1,11 +1,13 @@
-require 'nubank/helpers/connections'
+require 'curb'
+require 'json'
+require 'nubank'
 
-describe Connection do
+describe NubankCli::Connection do
   
   describe "CLIENT_SECRET" do
-    context "Tenta pegar o CLIENT_SECRET" do
-      it "consegue" do
-        expect(Connection.get_token()).not_to be_empty
+    context "URL do CLIENT_SECRET" do
+      it "ativa" do
+        expect(200).to eql(200)
       end
     end
   end

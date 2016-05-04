@@ -23,8 +23,8 @@ module NubankCli
     #   end
     # end
     
-    # Baixa a fatura do mês corrente no formato JSON 
     desc 'fatura', 'Baixa a fatura do mês atual'
+    # Baixa a fatura do mês corrente no formato JSON 
     def fatura
       obter_conta()
       
