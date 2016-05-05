@@ -33,8 +33,7 @@ module NubankCli
       if @@conta['accounts'].length == 1
         content = Connection.get(@@conta['accounts'][0]['_links']['bills_summary']['href'], @@token)
         # File.write('fatura.json', content)
-        # Parse.fatura_formatada content
-        NCurses.fatura_formatada
+        Parse.fatura_formatada content
       else
         puts 'Escolha uma conta (LOCKED BADGE)'
       end
