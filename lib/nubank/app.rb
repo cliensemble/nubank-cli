@@ -1,4 +1,6 @@
 require_relative 'helpers/connections.rb'
+require_relative 'helpers/ncurses.rb'
+require_relative 'helpers/parse.rb'
 require 'json'
 require 'thor'
 
@@ -30,7 +32,9 @@ module NubankCli
       
       if @@conta['accounts'].length == 1
         content = Connection.get(@@conta['accounts'][0]['_links']['bills_summary']['href'], @@token)
-        File.write('fatura.json', content)
+        # File.write('fatura.json', content)
+        # Parse.fatura_formatada content
+        NCurses.fatura_formatada
       else
         puts 'Escolha uma conta (LOCKED BADGE)'
       end

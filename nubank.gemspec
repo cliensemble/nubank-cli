@@ -18,13 +18,14 @@ Gem::Specification.new do |s|
   
   # s.add_dependency 'activesupport', '>= 3.2.0'
   # s.add_dependency 'colored'
-  s.add_dependency 'curb'
-  s.add_dependency 'thor'
+  s.add_dependency 'curb', "~> 0"
+  s.add_dependency 'thor', "~> 0"
   s.add_dependency 'curses'
+  s.add_dependency 'odf-report', "~> 0"
   # s.add_dependency 'nokogiri'
   # s.add_dependency 'hashie'
   # s.add_dependency 'faraday'
   s.add_development_dependency "rake", "~> 10.0"
   s.add_development_dependency "bundler", "~> 1.10"
-  s.add_development_dependency 'pry'
+  s.add_development_dependency 'pry', "~> 0"
 end
