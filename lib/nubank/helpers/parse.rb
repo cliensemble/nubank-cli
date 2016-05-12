@@ -28,7 +28,8 @@ module NubankCli
     # @return [String] Dados da fatura formatados.
     def self.fatura_atual_formatada(json_file)
         json_file['bill']['line_items'].each do |j|
-          puts "Data: #{j['post_date']}"
+          data = Date.strptime(j['post_date'], "%Y-%m-%d")
+          puts "Data: #{data[:mday]}/#{data[:mon]}/#{data[:year]}"
           puts "Estabelecimento: #{j['title']}"
           puts "Gasto: R$ #{self.formatar_moeda(j["amount"])}"
           puts "\n"
