@@ -20,8 +20,6 @@ Gem::Specification.new do |s|
   # s.add_dependency 'colored'
   s.add_dependency 'curb', "~> 0"
   s.add_dependency 'thor', "~> 0"
-  s.add_dependency 'curses'
-  s.add_dependency 'odf-report', "~> 0"
   # s.add_dependency 'nokogiri'
   # s.add_dependency 'hashie'
   # s.add_dependency 'faraday'

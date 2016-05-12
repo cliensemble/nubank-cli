@@ -13,7 +13,7 @@ module NubankCli
         JSON.parse parsed
     end
       
-    # Remove as barras invertidas da saída em JSON
+    # Formata a lista de faturas dentro do período de um ano
     # @param json_file [Hash] Fatura do mês corrente no formato JSON.
     # @return [String] Dados da fatura formatados.
     def self.fatura_formatada(json_file)
@@ -21,6 +21,22 @@ module NubankCli
           puts "Status: #{j['state']}"
           puts "Details: #{j['summary']['due_date']}"
         end
+    end
+      
+    # Formata a fatura do mês corrente
+    # @param json_file [Hash] Fatura do mês corrente no formato JSON.
+    # @return [String] Dados da fatura formatados.
+    def self.fatura_atual_formatada(json_file)
+        json_file['bill']['line_items'].each do |j|
+          puts "Data: #{j['post_date']}"
+          puts "Estabelecimento: #{j['title']}"
+          puts "Gasto: R$ #{self.formatar_moeda(j["amount"])}"
+          puts "\n"
+        end
+    end
+    
+    def self.formatar_moeda(valor)
+      valor.to_s.insert(-3, ",")
     end
       
   end

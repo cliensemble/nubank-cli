@@ -1,6 +1,5 @@
-require_relative 'helpers/connections.rb'
-require_relative 'helpers/ncurses.rb'
-require_relative 'helpers/parse.rb'
+require 'nubank/helpers/connections.rb'
+require 'nubank/helpers/parse.rb'
 require 'json'
 require 'thor'
 
@@ -34,6 +33,21 @@ module NubankCli
         content = Connection.get(@@conta['accounts'][0]['_links']['bills_summary']['href'], @@token)
         # File.write('fatura.json', content)
         Parse.fatura_formatada content
+      else
+        puts 'Escolha uma conta (LOCKED BADGE)'
+      end
+    end
+    
+    desc 'fatura detalhada', 'Exibe os detalhes da fatura do mês atual'
+    # Baixa a fatura do mês corrente no formato JSON 
+    def fatura_detalhada
+      obter_conta()
+      
+      if @@conta['accounts'].length == 1
+        content = Connection.get(@@conta['accounts'][0]['_links']['bills_summary']['href'], @@token)
+        fatura_atual = Connection.get(content["_links"]["open"]["href"], @@token)
+        # File.write('fatura.json', fatura_atual)
+        Parse.fatura_atual_formatada fatura_atual
       else
         puts 'Escolha uma conta (LOCKED BADGE)'
       end
